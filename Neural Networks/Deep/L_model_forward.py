@@ -1,0 +1,27 @@
+def L_model_forward(X, parameters):
+    """
+    Arguments:
+    X -- data, numpy array of shape (input size, number of examples)
+    parameters -- output of initialize_parameters_deep()
+    
+    Returns:
+    AL -- last post-activation value
+    caches -- list of caches containing:
+                every cache of linear_activation_forward() (there are L-1 of them, indexed from 0 to L-1)
+    """
+
+    caches = []
+    A = X
+    L = len(parameters) // 2                  # number of layers in the neural network
+    
+    for l in range(1, L):
+        A_prev = A 
+        A, cache = linear_activation_forward(A_prev,parameters['W'+str(l)],parameters['b'+str(l)],"relu")
+        caches.append(cache)
+    
+    AL, cache = linear_activation_forward(A,parameters['W'+str(L)],parameters['b'+str(L)],"sigmoid")
+    caches.append(cache)
+    
+    assert(AL.shape == (1,X.shape[1]))
+            
+    return AL, caches
