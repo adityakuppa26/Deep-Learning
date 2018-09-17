@@ -26,7 +26,7 @@
   
 * Update the parameters (W and b) of each layer after every iteration of the gradient descent algorithm , until the cost is minimized.  
   
-
+![dnn](dnn.PNG)
   
 
 
